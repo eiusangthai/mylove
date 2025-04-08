@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Quà em đâu anh?</title>
+    <style type="text/css">
+        body {
+            background: radial-gradient(circle closest-side at 60% 43%, #323232 26%, rgba(187, 0, 51, 0) 27%),
+                radial-gradient(circle closest-side at 40% 43%, #323232 26%, rgba(187, 0, 51, 0) 27%),
+                radial-gradient(circle closest-side at 40% 22%, #373737 45%, rgba(221, 51, 85, 0) 46%),
+                radial-gradient(circle closest-side at 60% 22%, #373737 45%, rgba(221, 51, 85, 0) 46%),
+                radial-gradient(circle closest-side at 50% 35%, #373737 30%, rgba(221, 51, 85, 0) 31%),
+                radial-gradient(circle closest-side at 60% 43%, #323232 26%, rgba(187, 0, 51, 0) 27%) 50px 50px,
+                radial-gradient(circle closest-side at 40% 43%, #323232 26%, rgba(187, 0, 51, 0) 27%) 50px 50px,
+                radial-gradient(circle closest-side at 40% 22%, #3c3c3c 45%, rgba(221, 51, 85, 0) 46%) 50px 50px,
+                radial-gradient(circle closest-side at 60% 22%, #3c3c3c 45%, rgba(221, 51, 85, 0) 46%) 50px 50px,
+                radial-gradient(circle closest-side at 50% 35%, #3c3c3c 30%, rgba(221, 51, 85, 0) 31%) 50px 50px;
+            background-color: #323232;
+            background-size: 100px 100px;
+            font-family: "Lato", sans-serif;
+        }
+
+        .centered {
+            width: 100%;
+            margin: 30vh auto;
+            text-align: center;
+        }
+
+        .centered h4 {
+            color: #ffffff;
+            font-size: 3em;
+            font-weight: bold;
+        }
+
+        input[type="checkbox"] {
+            display: none;
+        }
+
+        label {
+            height: 40px;
+            padding: 10px 40px;
+            display: inline-block;
+            cursor: pointer;
+            margin: 0 20px;
+            border-radius: 5px;
+            color: #ffffff;
+            font-size: 1.5em;
+            line-height: 1.5em;
+            text-transform: uppercase;
+            transition: all 0.25s ease-in-out;
+        }
+
+        label:hover {
+            transform: scale(1.1, 1.1);
+        }
+
+        .no {
+            background-color: #d8124b;
+            margin-bottom: 10px;
+        }
+
+        .yes {
+            background-color: #12d890;
+        }
+
+        .answer--yes,
+        .answer--no {
+            position: fixed;
+            height: 100%;
+            width: 100%;
+            top: 0;
+            left: 0;
+            z-index: 9;
+            visibility: hidden;
+            opacity: 0;
+            transition: opacity 0.5s ease-in-out;
+        }
+
+        .answer--yes {
+            background-image: url("img/yes.jpg");
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: contain;
+        }
+
+        .answer--no {
+            background-image: url("img/no.jpg");
+            background-repeat: repeat;
+            background-position: center;
+            background-size: contain;
+        }
+
+        #Yes:checked~.answer--yes {
+            visibility: visible;
+            opacity: 1;
+        }
+
+        #No:checked~.answer--no {
+            visibility: visible;
+            opacity: 1;
+        }
+
+        .love-text,
+        .nolove-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+            font-size: 3em;
+            font-weight: bold;
+            text-shadow: 2px 2px 4px #000;
+            z-index: 10;
+            text-align: center;
+        }
+
+        .signature {
+            position: absolute;
+            margin: auto;
+            bottom: 0;
+            width: 95%;
+        }
+
+        .signature p {
+            text-align: center;
+            font-family: Helvetica, Arial, Sans-Serif;
+            font-size: 0.85em;
+            color: #ffffff;
+        }
+
+        .signature .much-heart {
+            display: inline-block;
+            position: relative;
+            margin: 0 4px;
+            height: 10px;
+            width: 10px;
+            background: #d8124b;
+            border-radius: 4px;
+            transform: rotate(45deg);
+        }
+
+        .signature .much-heart::before,
+        .signature .much-heart::after {
+            display: block;
+            content: "";
+            position: absolute;
+            margin: auto;
+            height: 10px;
+            width: 10px;
+            border-radius: 5px;
+            background: #d8124b;
+            top: -4px;
+        }
+
+        .signature .much-heart::after {
+            bottom: 0;
+            top: auto;
+            left: -4px;
+        }
+
+        .signature a {
+            color: #d8124b;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .signature a:hover {
+            color: coral;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        /* Responsive cho điện thoại */
+        @media (max-width: 768px) {
+            .centered h4 {
+                font-size: 1.8em;
+                padding: 0 10px;
+            }
+
+            label {
+                padding: 10px 20px;
+                font-size: 1.2em;
+                margin: 10px 10px;
+            }
+
+            .love-text,
+            .nolove-text {
+                font-size: 2em;
+                padding: 0 15px;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="centered">
+        <h4>Em có yêu anh không Thùy Linh?</h4>
+        <input class="no" id="No" type="checkbox" name="answer" />
+        <label class="no" for="No">Không á</label>
+        <input class="yes" id="Yes" type="checkbox" name="answer" />
+        <label class="yes" for="Yes">Dạ có</label>
+
+        <div class="answer--yes">
+            <p class="love-text">Anh cũng vậy ❤️</p>
+        </div>
+        <div class="answer--no">
+            <p class="nolove-text">Em muốn chết à</p>
+        </div>
+    </div>
+</body>
+
+</html>
